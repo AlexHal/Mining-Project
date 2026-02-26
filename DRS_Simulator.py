@@ -1,0 +1,3 @@
+from init_data import load_confExStrings_from_excel
+
+load_confExStrings_from_excel("MiningSystemDRS_ConfExStrings_v4.xlsx")
