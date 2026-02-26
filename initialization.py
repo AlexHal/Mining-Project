@@ -28,8 +28,10 @@ def initialization_state(conf : Configuation_expr, dim: Dimensions , vars : DRSV
         state.drs_DiscretelyDynamicalNumericalVariable = evaluate_expr(expr)
 
     for i, label in enumerate(vars.categorical_labels):
-        expr = conf.confExString_InitialCategoricalVariableValue[label]
-        state.drs_CategoricalVariable[i] = evaluate_expr(expr)
+        # expr = conf.confExString_InitialCategoricalVariableValue[label]
+        # state.drs_CategoricalVariable[i] = evaluate_expr(expr)
+
+        state.drs_CategoricalVariable[i] = conf.confExString_InitialCategoricalVariableValue[label]
 
     return state
 
