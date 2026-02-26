@@ -17,8 +17,8 @@ def Len(s: str) -> int:
 
 # A lil unsure will have to do some testing on a small arena model
 def Mid(s: str, start_index : float, count : float) -> str: 
-    i = max(0, start_index - 1)
-    return s[i:i+count]
+    i = max(0, int(start_index) - 1)
+    return s[i:i+int(count)]
 
 
 _ALLOWED_NAMES = {
@@ -33,7 +33,10 @@ _ALLOWED_NAMES = {
 
 
 # Must take into acount the current "state" of the simulation ie the curent vals of vars
-def evaluate_expr(expr: str, env: Dict[str, any]) -> any :
+def evaluate_expr(expr: str, env: Dict[str, any] = None) -> any :
+    if env is None:
+        env = {}
+    
     to_eval = arena_to_python_expr(expr)
 
     # Permit normal opps
