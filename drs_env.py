@@ -1,6 +1,9 @@
 from typing import Dict, Any
 from init_data import  DRSState, DRSVars, Parameters, ControlVars
 
+# TODO: build dynamic env once everything works.
+# Will req us to remove the build env of the other methods and pass the env instead 
+
 
 def build_env(state : DRSState, vars : DRSVars, params : Parameters, ctrl : ControlVars) -> Dict[str, Any]:
     env: Dict[str, Any] = {}
