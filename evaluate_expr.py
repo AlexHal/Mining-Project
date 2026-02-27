@@ -39,7 +39,6 @@ def evaluate_expr(expr: str, env: Dict[str, any] = None) -> any :
     
     to_eval = arena_to_python_expr(expr)
 
-    # Permit normal opps
     # permit the opps we translated
 
     globals = {"__builtins__": {}} # we allow no normal opp only the ones we define
