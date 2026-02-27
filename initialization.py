@@ -10,22 +10,22 @@ def initialization_state(conf : Configuation_expr, dim: Dimensions , vars : DRSV
     state.TNOW = 0.0
 
     # init the RateConfigurationNumber
-    state.drs_RateConfigurationNumber = int(evaluate_expr(conf.confExString_InitialRateConfigurationNumber))
+    state.drs_RateConfigurationNumber = int(evaluate_expr(conf.confExString_InitialRateConfigurationNumber, {}))
     env = build_env(state, vars, params, ctrl)
     
     # init levels, timers, dynamic numerals, cat
     # Maybe cast if needed, test later
     for i, label in enumerate(vars.level_labels):
         expr = conf.confExString_InitialLevelValue[label]
-        state.drs_Level[i] = evaluate_expr(expr)
+        state.drs_Level[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.timer_labels):
         expr = conf.confExString_InitialTimerValue[label]
-        state.drs_Level[i] = evaluate_expr(expr)
+        state.drs_Timer[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.dynamic_numerical_labels):
         expr = conf.confExString_InitialDiscretelyDynamicalNumericalVariableValue[label]
-        state.drs_DiscretelyDynamicalNumericalVariable = evaluate_expr(expr)
+        state.drs_DiscretelyDynamicalNumericalVariable[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.categorical_labels):
         # expr = conf.confExString_InitialCategoricalVariableValue[label]
