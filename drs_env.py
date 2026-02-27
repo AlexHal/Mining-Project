@@ -5,7 +5,7 @@ from init_data import  DRSState, DRSVars, Parameters, ControlVars
 # Will req us to remove the build env of the other methods and pass the env instead 
 
 
-def build_env(state : DRSState, vars : DRSVars, params : Parameters, ctrl : ControlVars) -> Dict[str, Any]:
+def build_env(state : DRSState, vars : DRSVars, params : Parameters, ctrl : ControlVars = None) -> Dict[str, Any]:
     env: Dict[str, Any] = {}
 
     env["drs_RateConfigurationNumber"] = state.drs_RateConfigurationNumber
@@ -22,13 +22,14 @@ def build_env(state : DRSState, vars : DRSVars, params : Parameters, ctrl : Cont
         env[label] = state.drs_Level[i]
     for i, label in enumerate(vars.timer_labels):
         env[label] = state.drs_Timer[i]
-    for i, label in enumerate(vars.ddnv_labels):
+    for i, label in enumerate(vars.dynamic_numerical_labels):
         env[label] = state.drs_DiscretelyDynamicalNumericalVariable[i]
     for i, label in enumerate(vars.categorical_labels):
         env[label] = state.drs_CategoricalVariable[i]
 
-# Test which i need here
-    env.update(params.__dict__)
-    env.update(ctrl)
-
+    # Test which i need here
+    if params:
+        env.update(params)
+    if ctrl:
+        env.update(ctrl)
     return env
