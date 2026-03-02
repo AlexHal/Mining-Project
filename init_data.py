@@ -71,7 +71,7 @@ class DRSVars:
     )
 
     # Since we had cat. in the decide of the last part of the model
-    categorical_labels: Tuple[str, ...] = ("DummerCategorical")
+    categorical_labels: Tuple[str, ...] = ("DummerCategorical",)
 
     def build_dicts(self) -> Dict[str, Tuple[str, int]]:
         # L : level, T : Timer, N : dynamic.., C : catego.
@@ -123,9 +123,9 @@ class DRSState:
 
     def init(self, dim : Dimensions):
         self.drs_Level = [0.0] * dim.dim_NumberOfLevels
-        self.drs_Timer = [0.0] * dim.dim_NumberOfLevels
+        self.drs_Timer = [0.0] * dim.dim_NumberOfTimerss
         self.drs_DiscretelyDynamicalNumericalVariable = [0.0] * dim.dim_NumberOfDiscretelyDynamicalNumericalVariabless
-        self.drs_CategoricalVariable = [0.0] * dim.dim_NumberOfCategoricalVariabless
+        self.drs_CategoricalVariable = [""] * dim.dim_NumberOfCategoricalVariabless
 
 
 @dataclass
@@ -253,8 +253,9 @@ def load_confExStrings_from_excel(xlsx_path: str, sheet_name: str | None = None)
     index_terminatingCond = find_row(rows, "confExString_TerminatingCondition")
     index_initRateConfig = find_row(rows, "confExString_InitialRateConfigurationNumber")
 
-    Configuation_expr.confExString_TerminatingCondition = parse_scalar(rows, index_terminatingCond)
-    Configuation_expr.confExString_InitialRateConfigurationNumber = parse_scalar(rows, index_initRateConfig)
+    conf = Configuation_expr(confExString_TerminatingCondition="")
+    conf.confExString_TerminatingCondition = parse_scalar(rows, index_terminatingCond)
+    conf.confExString_InitialRateConfigurationNumber = parse_scalar(rows, index_initRateConfig)
 
     # Vectors
 
@@ -267,7 +268,7 @@ def load_confExStrings_from_excel(xlsx_path: str, sheet_name: str | None = None)
 
     for vec in vectors:
         k_i = find_row(rows, vec)
-        setattr(Configuation_expr, vec, parse_vector(rows, k_i))
+        setattr(conf, vec, parse_vector(rows, k_i))
 
 
     matrices = [
@@ -290,10 +291,9 @@ def load_confExStrings_from_excel(xlsx_path: str, sheet_name: str | None = None)
 
     for matrix in matrices:
         k_i = find_row(rows, matrix)
-        setattr(Configuation_expr, matrix, parse_matrix(rows, k_i))
+        setattr(conf, matrix, parse_matrix(rows, k_i))
 
-
-    return Configuation_expr
+    return conf
 
 
     # Eeach row is the first index is used then we have a coef stored
