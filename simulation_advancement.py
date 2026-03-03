@@ -36,6 +36,8 @@ def advance_simulation(conf: Configuation_expr, state: DRSState, dim: Dimensions
         rate = float(evaluate_expr(expr, env))
         state.drs_Timer[i] = state.drs_Timer[i] + rate * delta_t
 
+    state.drs_TimeOfPreviousDRSUpdate = state.TNOW
+
     # Find new ass. addr.
     assignment_address = 0
     crossing_idx = int(state.drs_ThresholdCrossingLevelOrTimerNumber)
