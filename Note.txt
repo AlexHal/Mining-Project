@@ -1,2 +1,0 @@
-Not a fan of all these Dict hovever I expect it to make the rest of the software easier to debug later on
-don't want to use lambda expr as i feel that it makes things a lil more complex to reason about as time goes on
