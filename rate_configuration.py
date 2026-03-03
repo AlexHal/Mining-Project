@@ -1,6 +1,7 @@
 from init_data import Dimensions, DRSState, DRSVars, Parameters, ControlVars, Configuation_expr
 from evaluate_expr import evaluate_expr
 from drs_env import build_env
+from helpers import get_matrix_expr
 
 # Implementing
 # drs_RateConfigurationNumber
@@ -15,21 +16,24 @@ def update_rate_config(conf : Configuation_expr, state : DRSState, dim : Dimensi
     env = build_env(state, vars, params, ctrl)
 
     column_key = str(int(state.drs_RateConfigurationNumber))
+    crossing_idx = int(state.drs_ThresholdCrossingLevelOrTimerNumber)
+    if crossing_idx <= 0:
+        return state.drs_RateConfigurationNumber
     
     if state.drs_ThresholdIsCrossedByTimer == 0:
-        idx = min(int(state.drs_ThresholdCrossingLevelOrTimerNumber), dim.dim_NumberOfLevels)
+        idx = min(crossing_idx, dim.dim_NumberOfLevels)
         row_label = vars.level_labels[idx-1]
         if state.drs_DirectionOfThresholdCrossing == -1:
-            expr = conf.confExString_LowerLevelResultantRateConfiguration[row_label][column_key]
+            expr = get_matrix_expr(conf.confExString_LowerLevelResultantRateConfiguration, row_label, column_key, "")
         else:
-            expr = conf.confExString_UpperLevelResultantRateConfiguration[row_label][column_key]
+            expr = get_matrix_expr(conf.confExString_UpperLevelResultantRateConfiguration, row_label, column_key, "")
     else:
-        idx = min(int(state.drs_ThresholdCrossingLevelOrTimerNumber), dim.dim_NumberOfTimerss)
+        idx = min(crossing_idx, dim.dim_NumberOfTimerss)
         row_label = vars.timer_labels[idx-1]
         if state.drs_DirectionOfThresholdCrossing == -1:
-            expr = conf.confExString_LowerTimerResultantRateConfiguration[row_label][column_key]
+            expr = get_matrix_expr(conf.confExString_LowerTimerResultantRateConfiguration, row_label, column_key, "")
         else:
-            expr = conf.confExString_UpperTimerResultantRateConfiguration[row_label][column_key]
+            expr = get_matrix_expr(conf.confExString_UpperTimerResultantRateConfiguration, row_label, column_key, "")
 
     # clean expr, think of "" cells
     s = str(expr).strip()
