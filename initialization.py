@@ -1,6 +1,7 @@
 from drs_env import build_env
 from init_data import Dimensions, DRSState, DRSVars, Parameters, ControlVars, Configuation_expr
 from evaluate_expr import evaluate_expr
+from helpers import get_init_expr
 
 def initialization_state(conf : Configuation_expr, dim: Dimensions , vars : DRSVars, params : Parameters, ctrl : ControlVars):
     state = DRSState()
@@ -16,22 +17,18 @@ def initialization_state(conf : Configuation_expr, dim: Dimensions , vars : DRSV
     # init levels, timers, dynamic numerals, cat
     # Maybe cast if needed, test later
     for i, label in enumerate(vars.level_labels):
-        expr = conf.confExString_InitialLevelValue[label]
+        expr = str(conf.confExString_InitialLevelValue.get(label))
         state.drs_Level[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.timer_labels):
-        expr = conf.confExString_InitialTimerValue[label]
+        expr = str(conf.confExString_InitialTimerValue.get(label, "0"))
         state.drs_Timer[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.dynamic_numerical_labels):
-        expr = conf.confExString_InitialDiscretelyDynamicalNumericalVariableValue[label]
+        expr = str(conf.confExString_InitialDiscretelyDynamicalNumericalVariableValue.get(label))
         state.drs_DiscretelyDynamicalNumericalVariable[i] = float(evaluate_expr(expr, env))
 
     for i, label in enumerate(vars.categorical_labels):
-        # expr = conf.confExString_InitialCategoricalVariableValue[label]
-        # state.drs_CategoricalVariable[i] = evaluate_expr(expr)
-
-        state.drs_CategoricalVariable[i] = conf.confExString_InitialCategoricalVariableValue[label]
+        state.drs_CategoricalVariable[i] = str(conf.confExString_InitialCategoricalVariableValue.get(label))
 
     return state
-
