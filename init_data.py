@@ -238,7 +238,7 @@ def parse_matrix(rows: List[List[Any]], start_i: int) -> Dict[str, Dict[str, str
                     out[b][col] = val
         i += 1
 
-    print("keys:", list(out.keys())[:5])
+    # print("keys:", list(out.keys())[:5])
 
     return out
 
