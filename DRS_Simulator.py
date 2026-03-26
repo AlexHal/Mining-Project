@@ -1,4 +1,7 @@
-from init_data import load_confExStrings_from_excel, Dimensions, DRSState, DRSVars, Parameters, Configuation_expr, ControlVars
+from typing import Any, Dict
+
+from init_data import load_confExStrings_from_excel, Dimensions, DRSState, DRSVars, Configuation_expr
+from config import Parameters, ControlVars
 from initialization import initialization_state
 from threshold_characterization import characterize_next_threshold
 from simulation_advancement import advance_simulation
@@ -7,17 +10,17 @@ from assignment_execution import assign_execute
 from output_statistics import compute_output_statistics
 from out_plot import plot_modes, plot_ore_levels
 
-
-def main():
-    config = load_confExStrings_from_excel("MiningSystemDRS_ConfExStrings_v4.xlsx")
-    dim = Dimensions()
-    vars = DRSVars()
-    params = Parameters()
-    ctrl = ControlVars()
+def run_simulation(
+    config: Configuation_expr,
+    dim: Dimensions,
+    vars: DRSVars,
+    params: Parameters,
+    ctrl: ControlVars,
+    create_plots: bool = True,
+) -> Dict[str, Any]:
 
     state = initialization_state(config, dim, vars, params, ctrl)
 
-    # --- time-series collectors ---
     time_series = []
     rate_config_series = []
     ore_stock_series = []
@@ -53,20 +56,43 @@ def main():
 
     stats = compute_output_statistics(state, vars, params)
 
-    # --- plots ---
-    fig1 = plot_modes(time_series, rate_config_series)
-    fig1.savefig("output_plot/modes_plot.png", dpi=150)
+    if create_plots:
+        fig1 = plot_modes(time_series, rate_config_series)
+        fig1.savefig("output_plot/modes_plot.png", dpi=150)
 
-    fig2 = plot_ore_levels(time_series, ore_stock_series, ore1_stock_series, ore2_stock_series)
-    fig2.savefig("output_plot/ore_level_plot.png", dpi=150)
+        fig2 = plot_ore_levels(time_series, ore_stock_series, ore1_stock_series, ore2_stock_series)
+        fig2.savefig("output_plot/ore_level_plot.png", dpi=150)
 
     return {
         "state": state,
         "output_statistics": stats,
+        "time_series": time_series,
+        "rate_config_series": rate_config_series,
+        "ore_stock_series": ore_stock_series,
+        "ore1_stock_series": ore1_stock_series,
+        "ore2_stock_series": ore2_stock_series,
     }
+
+
+def main() -> Dict[str, Any]:
+    config = load_confExStrings_from_excel("MiningSystemDRS_ConfExStrings_v4.xlsx")
+    dim = Dimensions()
+    vars = DRSVars()
+    params = Parameters()
+    ctrl = ControlVars()
+
+    return run_simulation(
+        config=config,
+        dim=dim,
+        vars=vars,
+        params=params,
+        ctrl=ctrl,
+        create_plots=True,
+    )
 
 
 if __name__ == "__main__":
     result = main()
+
     for k, v in result["output_statistics"].__dict__.items():
         print(f"{k}: {v}")
