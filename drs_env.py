@@ -1,6 +1,7 @@
 from typing import Dict, Any
 from dataclasses import asdict, is_dataclass
-from init_data import DRSState, DRSVars, Parameters, ControlVars
+from init_data import DRSState, DRSVars
+from config import Parameters, ControlVars
 from helpers import index_getter
 
 #  TODO: build dynamic env once everything works.

@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Any
 import openpyxl
 from openpyxl.worksheet.worksheet import Worksheet
+from config import Parameters, ControlVars
 
 # Expressions
 @dataclass
@@ -126,27 +127,6 @@ class DRSState:
         self.drs_Timer = [0.0] * dim.dim_NumberOfTimerss
         self.drs_DiscretelyDynamicalNumericalVariable = [0.0] * dim.dim_NumberOfDiscretelyDynamicalNumericalVariabless
         self.drs_CategoricalVariable = [""] * dim.dim_NumberOfCategoricalVariabless
-
-
-@dataclass
-class Parameters:
-    parameter_OreToBeExtractedDuringWarmingPeriod: float = 600000
-    parameter_TotalOreToBeExtracted: float = 6600000
-    parameter_DurationOfProductionCampaigns: float = 34
-    parameter_DurationOfShutdowns: float = 1
-    parameter_ModeAOre1MillingRate: float = 3600
-    parameter_ModeAOre2MillingRate: float = 2400
-    parameter_ModeAContingencyOre1MillingRate: float = 3900 
-    parameter_ModeBOre1MillingRate: float = 4600
-    parameter_ModeBOre2MillingRate: float = 800
-    parameter_ModeBContingencyOre2MillingRate: float = 2500 
-    parameterVector_GeostatisticalModelParameters: Tuple[float, ...] = (30000.0, 50000.0, 30.0, 30.0, 5.0, 1.0)
-
-@dataclass
-class ControlVars:
-    controlVariable_CriticalOre2Level: float = 20400
-    controlVariable_TargetOreStockLevel: float = 60000
-    controlVariable_DurationOfContingencySegments: float = 1
 
 
 # Must write to get info from excel file

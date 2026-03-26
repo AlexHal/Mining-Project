@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from init_data import DRSState, DRSVars, Parameters
+from init_data import DRSState, DRSVars
+from config import Parameters
 
 
 @dataclass

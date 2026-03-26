@@ -1,4 +1,5 @@
-from init_data import Dimensions, DRSState, DRSVars, Parameters, ControlVars, Configuation_expr
+from init_data import Dimensions, DRSState, DRSVars, Configuation_expr
+from config import Parameters, ControlVars
 from evaluate_expr import evaluate_expr
 from drs_env import build_env
 
