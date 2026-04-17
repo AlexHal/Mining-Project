@@ -28,7 +28,7 @@ This report presents a COMP 396 project on mine production and ore stockpile inv
 This project was conducted in collaboration with Professor Alessandro Navarra. His Arena model design, project direction, and technical feedback were central to both the simulator implementation and the optimization framework.
 
 \section{Introduction}
-Over the semester, this project evolved from introductory Arena exercises into a complete Python-based simulation and optimization workflow for a mine production and ore stockpile inventory control system. The initial objective was to understand the Arena logic in sufficient depth to reproduce it faithfully in code; the second objective was to extend that foundation by tuning control variables from repeated simulation results.
+This project evolved from introductory Arena exercises into a complete Python-based simulation and optimization workflow for a mine production and ore stockpile inventory control system. The initial objective was to understand the Arena logic in sufficient depth to reproduce it faithfully in code; the second objective was to extend that foundation by tuning control variables from repeated simulation results.
 
 A major advantage was that Professor Alessandro Navarra's Arena model already behaved similarly to a traditional program. This made it possible to map key model components to separate Python modules without compromising the original logic.
 
@@ -58,10 +58,12 @@ The core performance metric used in this project is throughput. If $E$ is cumula
 \]
 This definition reflects production efficiency after warm-up bias is removed. Additional timer-based quantities are tracked to measure how much time the system spends in each operating mode.
 
-\subsection{Semester Progression in Arena}
+\section{Semester Progression in Arena}
 
-\subsection{Part 1: Getting Familiar with Arena (Queue Network)}
-At the beginning of the semester, I focused on mastering Arena fundamentals. We built a basic queue network to understand entity movement, delays, event logic, and state evolution over time.
+Throughout the semester, the Arena model evolved through three distinct phases, each building on the previous to increase complexity and introduce new modeling techniques. This section summarizes each phase and its role in informing the eventual Python implementation.
+
+\subsection{Getting Familiar with Arena (Queue Network)}
+At the beginning, I focused on mastering Arena fundamentals. We built a basic queue network to understand entity movement, delays, event logic, and state evolution over time.
 
 \begin{figure}[H]
 \centering
@@ -70,7 +72,7 @@ At the beginning of the semester, I focused on mastering Arena fundamentals. We 
 \label{fig:arena-part1-queue}
 \end{figure}
 
-\subsection{Part 2: Simple Inventory Model with VBA}
+\subsection{Simple Inventory Model with VBA}
 The next stage was a simple inventory model with VBA integration. This was the point where VBA was formally introduced into the workflow. At this stage, stockout behavior and order volume were treated as control variables, which naturally motivated parameter tuning based on observed system outputs.
 
 \begin{figure}[H]
@@ -81,7 +83,7 @@ The next stage was a simple inventory model with VBA integration. This was the p
 \label{fig:arena-part2-inventory-vba}
 \end{figure}
 
-\subsection{Part 3: Mine Factory Production and Stockpile Control Model}
+\subsection{Mine Factory Production and Stockpile Control Model}
 The third Arena phase was a larger mine-factory model that combined production flow with ore stockpile control. This version retained and extended the VBA-assisted logic from the previous phase while introducing substantially more complexity in threshold management, state updates, and operating modes. The program-like structure of Professor Alessandro Navarra's Arena model directly informed the Python architecture used in this project.
 
 \begin{figure}[H]
@@ -132,7 +134,7 @@ Third, the implementation deliberately prioritized traceability over aggressive 
 \section{From Parallel Runs to Optimization Focus}
 My initial extension was a Java-based parallel runner to execute many simulation replications concurrently and improve statistical reliability more efficiently. This was implemented by launching multiple Python simulation processes and aggregating their outputs.
 
-I later shifted emphasis toward control-variable optimization to improve system output. Rather than investing primarily in replication infrastructure.
+That Java-based multithreading produced a major wall-clock speedup, but the parallel implementation itself was straightforward enough that I did not want to spend the project mainly on runtime reduction. I moved to optimization instead because reducing average simulation time felt too incremental on its own, while tuning the control variables had a much larger impact on the actual system behavior and final outpu
 
 \subsection{Observed Runtime Comparison: Java Concurrency vs Python Sequential}
 To document the implementation-performance impact, I recorded average runtime results for Java and Python execution paths. The Java result was measured using 5 threads over 15 occurrences, while the Python sequential result was measured over 10 occurrences.
@@ -145,6 +147,9 @@ To document the implementation-performance impact, I recorded average runtime re
 \label{fig:java-python-speed-comparison}
 \end{figure}
 
+These runtime comparisons showed a clear improvement when Java multithreading was used. Since that speedup was already achieved, I chose not to pursue that path further and instead redirected effort toward something more complex and higher-impact: optimization of the control variables.
+
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.49\linewidth]{images/Python_sim_Run_single_test.png}\hfill
@@ -156,6 +161,7 @@ To document the implementation-performance impact, I recorded average runtime re
 \caption{Python UI workflow: single test run, optimization launch, and optimization in progress.}
 \label{fig:python-ui-workflow}
 \end{figure}
+
 
 \subsection{Optimization Method and Rationale}
 The optimization method used was Bayesian optimization, implemented with a GP-style predictive model and expected-improvement-style candidate scoring, to tune key control variables, particularly the critical ore stock threshold.
@@ -220,6 +226,7 @@ This protocol reflects the actual optimization pipeline, which computes the best
 \end{figure}
 
 \section{Related Work}
+% TODO: check Navarra docs for any additional related-work references or wording.
 This project is related to two main areas of work: simulation-based control and Bayesian optimization. In simulation-based control, the system is evaluated repeatedly and control settings are tuned by comparing outcomes across runs. That is the basic pattern used in this DRS project, where the simulator itself is the only practical way to measure the effect of a control choice.
 
 For the optimization side, the implementation follows the standard Bayesian optimization idea of using previous evaluations to choose the next candidate more intelligently than a brute-force sweep. The Cornell lecture notes in the bibliography were useful as background for the terminology and practical intuition behind the method \cite{cornell4780note15,cornell4787lec16,cornell4787lec17}.
@@ -241,7 +248,9 @@ This project began with foundational Arena modeling and matured into a modular P
 
 Several strong directions remain for future work. The most immediate is extending from single-variable tuning to joint optimization over multiple control variables, followed by objective formulations that combine throughput, stockout behavior, shutdown impact, and transition-related operating costs. From a computational perspective, combining parallel replications with optimization should improve statistical confidence while reducing runtime. Queueing-theory abstractions may also provide clearer analytical insight into bottlenecks. Performance profiling is needed as well, particularly around plotting and file-I/O overhead.
 
-An additional practical next step is to formalize a benchmarking suite with fixed seeds, standardized scenario files, and reporting templates. This would make future comparisons reproducible and would support supervisor review by clearly separating algorithmic improvements from random variation.
+Another practical extension would be to keep the optimization logic in Python but move execution to Java, using a thread pool to dispatch program setups and \texttt{Future} objects to collect results asynchronously. That would preserve the current search logic while giving the execution layer a more scalable runtime design.
+
+A separate next step is to formalize a benchmarking suite with fixed seeds, standardized scenario files, and reporting templates. This would make future comparisons reproducible and would support supervisor review by clearly separating algorithmic improvements from random variation.
 
 \appendix
 
