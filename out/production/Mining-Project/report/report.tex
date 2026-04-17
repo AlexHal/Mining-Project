@@ -134,6 +134,17 @@ My initial extension was a Java-based parallel runner to execute many simulation
 
 I later shifted emphasis toward control-variable optimization to improve system output. Rather than investing primarily in replication infrastructure.
 
+\subsection{Observed Runtime Comparison: Java Concurrency vs Python Sequential}
+To document the implementation-performance impact, I recorded average runtime results for Java and Python execution paths. The Java result was measured using 5 threads over 15 occurrences, while the Python sequential result was measured over 10 occurrences.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.49\linewidth]{images/Java_performance.png}\hfill
+\includegraphics[width=0.49\linewidth]{images/Python_sequential_avg.png}
+\caption{Average runtime comparison. Left: Java concurrent execution (5 threads, 15 occurrences). Right: Python sequential execution (10 occurrences).}
+\label{fig:java-python-speed-comparison}
+\end{figure}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.49\linewidth]{images/Python_sim_Run_single_test.png}\hfill
@@ -209,11 +220,11 @@ This protocol reflects the actual optimization pipeline, which computes the best
 \end{figure}
 
 \section{Related Work}
-This project is most directly related to work on simulation-based parameter tuning for production systems. The key shared idea is to treat the simulator as the decision environment and evaluate candidate control settings through repeated runs, rather than relying on a closed-form objective.
+This project is related to two main areas of work: simulation-based control and Bayesian optimization. In simulation-based control, the system is evaluated repeatedly and control settings are tuned by comparing outcomes across runs. That is the basic pattern used in this DRS project, where the simulator itself is the only practical way to measure the effect of a control choice.
 
-For the optimization component, the project draws on Bayesian optimization concepts from the Cornell materials in the bibliography \cite{cornell4780note15,cornell4787lec16,cornell4787lec17}. In this report, those ideas are used in a practical DRS setting to tune control variables for throughput-oriented performance under stock constraints.
+For the optimization side, the implementation follows the standard Bayesian optimization idea of using previous evaluations to choose the next candidate more intelligently than a brute-force sweep. The Cornell lecture notes in the bibliography were useful as background for the terminology and practical intuition behind the method \cite{cornell4780note15,cornell4787lec16,cornell4787lec17}.
 
-Relative to simple brute-force sweeps, this approach improves sample efficiency by guiding where to evaluate next. Relative to highly data-driven alternatives, it remains tightly coupled to simulator behavior, which is important for this project because operational logic (modes, thresholds, and transitions) is encoded in the DRS model itself.
+The key point for this report is that the project combines these two ideas in one implementation: a DRS simulator for mine production and stockpile control, and a Bayesian search procedure that uses repeated simulation results to tune control variables.
 
 \section{Discussion: What Worked and What Did Not}
 The current implementation has several limitations. The simulation outputs are aligned with the Arena baseline for the tested workflow. The optimization layer is currently narrow and focuses on a limited subset of control variables. In addition, a formal unit-testing suite is still absent, and the expression translation covers core syntax but not every Arena construct.

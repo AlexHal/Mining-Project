@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1776387473.64896 "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" "report.pdf" "report" 1776387475.23385 0
-  "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" 1776387471 23493 2a2d48d3cdf00228315bafc7f680b5f7 ""
+["pdflatex"] 1776392124.89146 "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" "report.pdf" "report" 1776392126.98515 0
+  "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" 1776392115 24274 9e20d5a7d6bcf45d30cd6072ef98a97c ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1757989357 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1757990446 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1757989944 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -91,19 +91,21 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758119732 5574045 22848c10ad8b56b5f83684fbec0ec0d7 ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758108983 3605808 9359fdfdad31eab958be9c4f797e366c ""
   "c:/texlive/2025/texmf.cnf" 1758094131 713 e69b156964470283e0530f5060668171 ""
+  "images/Java_performance.png" 1776388938 8997 9ca9e933850b18c75137cbb0d474618f ""
   "images/Model1.png" 1776379570 155103 2b5cba9da2b08fb49adc9cf5cd7a327a ""
   "images/Model2_1.png" 1776379665 39951 672d7882158d2d424f8d336e781997f6 ""
   "images/Model2_2.png" 1776379674 30370 371aea8a326bc4ec45ef66e74ff4dd99 ""
   "images/Model3_1.png" 1776379785 165093 9ee3f223004e59c20fbee02f57c9afc1 ""
   "images/Model3_2.png" 1776379796 205455 8bdab23f9fc7d07f010cb2874eaaca61 ""
+  "images/Python_sequential_avg.png" 1776388781 1860 a76160dcf3f412bb6ae755c777dd4ea6 ""
   "images/Python_sim_Optimization_in_progress.png" 1776379981 29441 b8cf5f5daf559e736324078de50573fc ""
   "images/Python_sim_Run_optimization.png" 1776379967 33723 eb91adad1f12167e5243f27e929d2a31 ""
   "images/Python_sim_Run_single_test.png" 1776379948 34876 a349cc1f8c8dba10672de07c0e47a494 ""
   "images/Python_sim_modes_plot.png" 1774556719 31448 bff1954de84a85d7fee60394a929d227 ""
   "images/Python_sim_ore_level_plot.png" 1774556716 129285 6bf9f2b965b6b64f44881e0e7cba5163 ""
-  "report.aux" 1776387475 6559 de1eb7c9afbb5ed9d6892488abaf038d "pdflatex"
-  "report.out" 1776387475 6889 27ce8fa8b8f20c351f173eac022ddda6 "pdflatex"
-  "report.tex" 1776387471 23493 2a2d48d3cdf00228315bafc7f680b5f7 ""
+  "report.aux" 1776392126 7206 43c63f4bed9eb54a2df418c5e641aec5 "pdflatex"
+  "report.out" 1776392126 7298 7b42b5983d8836b431feb782e4b6d26e "pdflatex"
+  "report.tex" 1776392115 24274 9e20d5a7d6bcf45d30cd6072ef98a97c ""
   (generated)
   "report.aux"
   "report.log"
