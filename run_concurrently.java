@@ -22,6 +22,8 @@ public class run_concurrently {
 
         ConcurrentLinkedQueue<Map<String, Double>> results = new ConcurrentLinkedQueue<>();
 
+        long totalStart = System.currentTimeMillis();
+
         for (int i = 0; i < numRuns; i++) {
 
             final int runId = i + 1;
@@ -33,10 +35,10 @@ public class run_concurrently {
                     pb.redirectErrorStream(true);
 
                     Process p = pb.start();
-                    
+
                     // Read and store python program output
                     BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                    
+
                     StringBuilder out = new StringBuilder();
                     String line;
 
@@ -48,11 +50,14 @@ public class run_concurrently {
 
                     if (rc != 0)
                         throw new RuntimeException("Run " + runId + " failed");
+
                     // Parse
                     Map<String, Double> stats = parseStats(out.toString());
 
                     if (!stats.isEmpty())
                         results.add(stats);
+                    else
+                        System.err.println("Run " + runId + " produced no parsable stats.");
 
                 } catch (Exception e) {
                     System.err.println("Run " + runId + " failed: " + e.getMessage());
@@ -61,6 +66,10 @@ public class run_concurrently {
         }
 
         pool.shutdown();
+        pool.awaitTermination(1, TimeUnit.HOURS);
+
+        long totalEnd = System.currentTimeMillis();
+        long totalTime = totalEnd - totalStart;
 
         Map<String, Double> sums = new LinkedHashMap<>();
         int success = 0;
@@ -77,7 +86,11 @@ public class run_concurrently {
             System.exit(2);
         }
 
-        System.out.println("Completed " + success + " runs. Averages:");
+        System.out.println("Threads used: " + numThreads);
+        System.out.println("Total time (ms): " + totalTime);
+        System.out.println("Average time per successful run (ms): " + ((double) totalTime / success));
+
+        System.out.println("\nCompleted " + success + " runs. Averages:");
         // Print avgs
         for (Map.Entry<String, Double> e : sums.entrySet()) {
             System.out.printf("%s: %.6f\n", e.getKey(), e.getValue() / success);
@@ -90,8 +103,8 @@ public class run_concurrently {
         Map<String, Double> m = new LinkedHashMap<>();
 
         Pattern p = Pattern.compile(
-            "^\\s*([^:]+):\\s*([+-]?[0-9]*\\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\\s*$",
-            Pattern.MULTILINE
+                "^\\s*([^:]+):\\s*([+-]?[0-9]*\\.?[0-9]+(?:[eE][+-]?[0-9]+)?)\\s*$",
+                Pattern.MULTILINE
         );
 
         Matcher mt = p.matcher(out);
