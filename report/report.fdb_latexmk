@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1776401041.34477 "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" "report.pdf" "report" 1776401043.39733 0
-  "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" 1776401040 25442 9538335849aeef7b845dc83619c27dc2 ""
+["pdflatex"] 1777416152.27871 "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" "report.pdf" "report" 1777416154.143 0
+  "c:/Users/Alex/Desktop/School/2026W/COMP 396/Mining-Project/report/report.tex" 1777416151 29904 568dc3ead57fdc45b4ff55c655cb5ea2 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1757989357 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1757990446 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1757989944 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -103,9 +103,9 @@
   "images/Python_sim_Run_single_test.png" 1776379948 34876 a349cc1f8c8dba10672de07c0e47a494 ""
   "images/Python_sim_modes_plot.png" 1774556719 31448 bff1954de84a85d7fee60394a929d227 ""
   "images/Python_sim_ore_level_plot.png" 1774556716 129285 6bf9f2b965b6b64f44881e0e7cba5163 ""
-  "report.aux" 1776401043 7175 1bc62859725eaef96e1412404dc7f581 "pdflatex"
-  "report.out" 1776401043 7146 e6be125331587094ecee35b5c1f46919 "pdflatex"
-  "report.tex" 1776401040 25442 9538335849aeef7b845dc83619c27dc2 ""
+  "report.aux" 1777416154 7567 371d173d2e7baa41d8360824a89acd2c "pdflatex"
+  "report.out" 1777416154 7670 9033a6e5dbec3cdab248eafb54f499b5 "pdflatex"
+  "report.tex" 1777416151 29904 568dc3ead57fdc45b4ff55c655cb5ea2 ""
   (generated)
   "report.aux"
   "report.log"

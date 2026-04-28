@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.17)  17 APR 2026 00:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.17)  28 APR 2026 18:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -339,7 +339,7 @@ Package hyperref Info: Link coloring OFF on input line 19.
 [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<images/Model1.png, id=135, 1721.68219pt x 356.0803pt>
+<images/Model1.png, id=143, 1721.68219pt x 356.0803pt>
 File: images/Model1.png Graphic file (type png)
 <use images/Model1.png>
 Package pdftex.def Info: images/Model1.png  used on input line 70.
@@ -347,22 +347,22 @@ Package pdftex.def Info: images/Model1.png  used on input line 70.
 
 
 [2]
-<images/Model2_1.png, id=146, 642.14906pt x 514.92375pt>
+<images/Model2_1.png, id=154, 642.14906pt x 514.92375pt>
 File: images/Model2_1.png Graphic file (type png)
 <use images/Model2_1.png>
 Package pdftex.def Info: images/Model2_1.png  used on input line 80.
 (pdftex.def)             Requested size: 230.18253pt x 184.57884pt.
-<images/Model2_2.png, id=147, 658.71094pt x 339.51843pt>
+<images/Model2_2.png, id=155, 658.71094pt x 339.51843pt>
 File: images/Model2_2.png Graphic file (type png)
 <use images/Model2_2.png>
 Package pdftex.def Info: images/Model2_2.png  used on input line 81.
 (pdftex.def)             Requested size: 230.18253pt x 118.64154pt.
-<images/Model3_1.png, id=148, 827.34094pt x 653.44125pt>
+<images/Model3_1.png, id=156, 827.34094pt x 653.44125pt>
 File: images/Model3_1.png Graphic file (type png)
 <use images/Model3_1.png>
 Package pdftex.def Info: images/Model3_1.png  used on input line 91.
 (pdftex.def)             Requested size: 230.18253pt x 181.79573pt.
-<images/Model3_2.png, id=149, 996.72375pt x 646.66594pt>
+<images/Model3_2.png, id=157, 996.72375pt x 646.66594pt>
 File: images/Model3_2.png Graphic file (type png)
 <use images/Model3_2.png>
 Package pdftex.def Info: images/Model3_2.png  used on input line 92.
@@ -372,38 +372,38 @@ Package pdftex.def Info: images/Model3_2.png  used on input line 92.
 [3 <./images/Model1.png> <./images/Model2_1.png> <./images/Model2_2.png>]
 
 [4 <./images/Model3_1.png> <./images/Model3_2.png>]
-<images/Python_sim_modes_plot.png, id=167, 867.24pt x 289.08pt>
+<images/Python_sim_modes_plot.png, id=175, 867.24pt x 289.08pt>
 File: images/Python_sim_modes_plot.png Graphic file (type png)
 <use images/Python_sim_modes_plot.png>
-Package pdftex.def Info: images/Python_sim_modes_plot.png  used on input line 129.
+Package pdftex.def Info: images/Python_sim_modes_plot.png  used on input line 130.
 (pdftex.def)             Requested size: 385.20255pt x 128.39978pt.
 
 
 [5 <./images/Python_sim_modes_plot.png>]
-<images/Java_performance.png, id=174, 290.58563pt x 62.48344pt>
+<images/Java_performance.png, id=183, 290.58563pt x 62.48344pt>
 File: images/Java_performance.png Graphic file (type png)
 <use images/Java_performance.png>
-Package pdftex.def Info: images/Java_performance.png  used on input line 144.
+Package pdftex.def Info: images/Java_performance.png  used on input line 145.
 (pdftex.def)             Requested size: 230.18253pt x 49.49579pt.
-<images/Python_sequential_avg.png, id=175, 161.10187pt x 13.55063pt>
+<images/Python_sequential_avg.png, id=184, 161.10187pt x 13.55063pt>
 File: images/Python_sequential_avg.png Graphic file (type png)
 <use images/Python_sequential_avg.png>
-Package pdftex.def Info: images/Python_sequential_avg.png  used on input line 145.
+Package pdftex.def Info: images/Python_sequential_avg.png  used on input line 146.
 (pdftex.def)             Requested size: 230.18253pt x 19.36192pt.
-<images/Python_sim_Run_single_test.png, id=176, 595.47469pt x 378.66469pt>
+<images/Python_sim_Run_single_test.png, id=185, 595.47469pt x 378.66469pt>
 File: images/Python_sim_Run_single_test.png Graphic file (type png)
 <use images/Python_sim_Run_single_test.png>
-Package pdftex.def Info: images/Python_sim_Run_single_test.png  used on input line 155.
+Package pdftex.def Info: images/Python_sim_Run_single_test.png  used on input line 156.
 (pdftex.def)             Requested size: 230.18253pt x 146.3728pt.
-<images/Python_sim_Run_optimization.png, id=177, 594.72188pt x 375.65344pt>
+<images/Python_sim_Run_optimization.png, id=186, 594.72188pt x 375.65344pt>
 File: images/Python_sim_Run_optimization.png Graphic file (type png)
 <use images/Python_sim_Run_optimization.png>
-Package pdftex.def Info: images/Python_sim_Run_optimization.png  used on input line 156.
+Package pdftex.def Info: images/Python_sim_Run_optimization.png  used on input line 157.
 (pdftex.def)             Requested size: 230.18253pt x 145.39223pt.
-<images/Python_sim_Optimization_in_progress.png, id=178, 594.72188pt x 377.91188pt>
+<images/Python_sim_Optimization_in_progress.png, id=187, 594.72188pt x 377.91188pt>
 File: images/Python_sim_Optimization_in_progress.png Graphic file (type png)
 <use images/Python_sim_Optimization_in_progress.png>
-Package pdftex.def Info: images/Python_sim_Optimization_in_progress.png  used on input line 160.
+Package pdftex.def Info: images/Python_sim_Optimization_in_progress.png  used on input line 161.
 (pdftex.def)             Requested size: 338.22418pt x 214.92186pt.
 
 
@@ -412,10 +412,10 @@ Package pdftex.def Info: images/Python_sim_Optimization_in_progress.png  used on
 [7 <./images/Python_sim_Run_single_test.png> <./images/Python_sim_Run_optimization.png> <./images/Python_sim_Optimization_in_progress.png>]
 
 [8]
-<images/Python_sim_ore_level_plot.png, id=212, 867.24pt x 289.08pt>
+<images/Python_sim_ore_level_plot.png, id=220, 867.24pt x 289.08pt>
 File: images/Python_sim_ore_level_plot.png Graphic file (type png)
 <use images/Python_sim_ore_level_plot.png>
-Package pdftex.def Info: images/Python_sim_ore_level_plot.png  used on input line 223.
+Package pdftex.def Info: images/Python_sim_ore_level_plot.png  used on input line 224.
 (pdftex.def)             Requested size: 385.20255pt x 128.39978pt.
 
 
@@ -423,27 +423,31 @@ Package pdftex.def Info: images/Python_sim_ore_level_plot.png  used on input lin
 
 [10]
 
-[11{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./report.aux)
+[11{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[12]
+
+[13] (./report.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: E6BE125331587094ECEE35B5C1F46919;7146.
+(rerunfilecheck)             Checksum: 9033A6E5DBEC3CDAB248EAFB54F499B5;7670.
  ) 
 Here is how much of TeX's memory you used:
- 11174 strings out of 467800
- 177160 string characters out of 5436061
- 595188 words of memory out of 5000000
- 39648 multiletter control sequences out of 15000+600000
+ 11185 strings out of 467800
+ 177302 string characters out of 5436061
+ 599263 words of memory out of 5000000
+ 39653 multiletter control sequences out of 15000+600000
  634678 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,730b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,1067b,569s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on report.pdf (11 pages, 887161 bytes).
+Output written on report.pdf (13 pages, 895631 bytes).
 PDF statistics:
- 323 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 347 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 317 words of extra memory for PDF output out of 10000 (max. 10000000)
 

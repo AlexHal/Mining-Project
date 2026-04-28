@@ -114,6 +114,7 @@ I also initially considered implementing the optimization workflow in Java, main
 
 That said, a strong future optimization remains available: using a Java orchestration layer to run multiple simulator instances on separate threads. Since many simulation runs are independent, concurrent execution could provide substantial speedups for replication-heavy experiments. I did not prioritize this path in the final implementation to keep development simpler, but it is a practical and potentially high-impact performance improvement.
 
+
 \subsection{Simulation Flow in Brief}
 At runtime, the simulator initializes levels and timers from Excel expressions, identifies the next threshold crossing, and advances time to that event. It then updates levels and timers using the active rate configuration, executes the assignment sequence associated with the crossing, updates rate configuration when required, and repeats this loop until the termination condition is satisfied. The final stage computes output statistics and generates plots for mode behavior and ore levels.
 
@@ -226,8 +227,9 @@ This protocol reflects the actual optimization pipeline, which computes the best
 \end{figure}
 
 \section{Related Work}
-% TODO: check Navarra docs for any additional related-work references or wording.
-This project is related to two main areas of work: simulation-based control and Bayesian optimization. In simulation-based control, the system is evaluated repeatedly and control settings are tuned by comparing outcomes across runs. That is the basic pattern used in this DRS project, where the simulator itself is the only practical way to measure the effect of a control choice.
+This project relates to three main areas of work: simulation-based mine control, economic evaluation of mine operations under uncertainty, and Bayesian optimization. In simulation-based control, the system is evaluated repeatedly and control settings are tuned by comparing outcomes across runs. That is the basic pattern used in this DRS project, where the simulator itself is the only practical way to measure the effect of a control choice.
+
+Recent mine-simulation work shows why this approach is useful for the economics of mines. Pe{\~n}a-Graf, {\'O}rdenes, Wilson, and Navarra propose a discrete-event simulation and machine-learning digital-twin framework for gold processing, where geological uncertainty and stockout risk are connected to operational mode changes and trigger-point decisions \cite{penagraf2022desml}. More directly for this project, {\'O}rdenes et al. use discrete rate simulation for geostatistically informed economic evaluation of narrow-vein Au-Ag ore processing, linking stochastic orebody representations, stockpile management policies, operational modes, and process behavior to economic measures such as net present value and internal rate of return \cite{ordenes2025drs}. These papers motivate simulation as more than a technical modeling tool: it provides a way to test control policies before real mine decisions commit capital, affect throughput, or change processing risk.
 
 For the optimization side, the implementation follows the standard Bayesian optimization idea of using previous evaluations to choose the next candidate more intelligently than a brute-force sweep. The Cornell lecture notes in the bibliography were useful as background for the terminology and practical intuition behind the method \cite{cornell4780note15,cornell4787lec16,cornell4787lec17}.
 
@@ -258,6 +260,39 @@ A separate next step is to formalize a benchmarking suite with fixed seeds, stan
 The implementation is organized around modular Python files for state initialization, threshold characterization, simulation advancement, assignment execution, rate-configuration updates, output statistics, and optimization. A separate Java utility was also implemented for concurrent replications.
 
 The most implementation-sensitive modules are the expression evaluator, environment builder, threshold characterization logic, and assignment execution pipeline. Together, these determine whether Arena semantics are preserved at runtime. In development, most debugging effort concentrated on these modules, since small expression or indexing mismatches can induce large downstream behavioral differences.
+
+
+
+
+\section{Use of Generative AI in the Project}
+Generative AI tools (such as GitHub Copilot and Claude) were occasionally used for minor code suggestions and to help resolve some specific bugs, such as array indexing issues (e.g., 0 vs 1-based indexing). For example, AI tools provided quick code snippets for reading Excel files and offered suggestions for debugging off-by-one errors. However, all core logic, design decisions, and implementation were done manually, and AI was not a major driver of the project. The use of AI was limited to convenience for routine or repetitive coding tasks, not for substantive algorithmic or architectural work.
+
+\section{Project Structure: File Roles and How to Run}
+The project is organized into modular Python files, each with a specific responsibility. Below is a summary of the main files and their roles:
+\begin{itemize}
+	\item \texttt{DRS\_Simulator.py}: Main simulator entry point. Runs the event-driven simulation using configuration loaded from Excel.
+	\item \texttt{bayesian\_stockout\_regression.py}: Implements Bayesian optimization for tuning control variables (e.g., critical ore threshold).
+	\item \texttt{control\_optimizer\_ui.py}: Provides a simple UI for launching simulations and optimization runs.
+	\item \texttt{arena\_to\_python\_expr.py}: Translates Arena-style expressions into Python syntax for evaluation.
+	\item \texttt{assignment\_execution.py}: Handles assignment logic and state updates triggered by simulation events.
+	\item \texttt{evaluate\_expr.py}: Safely evaluates parsed expressions in the simulation environment.
+	\item \texttt{drs\_env.py}: Defines the simulation environment, including state variables and configuration.
+	\item \texttt{init\_data.py}: Loads and initializes data from Excel and other sources.
+	\item \texttt{initialization.py}: Sets up initial simulation state and parameters.
+	\item \texttt{threshold\_characterization.py}: Identifies and manages threshold crossing events.
+	\item \texttt{rate\_configuration.py}: Manages rate configuration and mode switching logic.
+	\item \texttt{output\_statistics.py}: Computes and exports simulation output statistics.
+	\item \texttt{out\_plot.py}: Generates plots for simulation results.
+	\item \texttt{run\_concurrently.java}: Java utility for running multiple simulation replications in parallel.
+	\item \texttt{config.py}, \texttt{helpers.py}, \texttt{get\_rate.py}: Utility and helper modules.
+\end{itemize}
+\textbf{How to run the project:}
+\begin{itemize}
+	\item Run a simulation: \texttt{python DRS\_Simulator.py}
+	\item Run optimization: \texttt{python bayesian\_stockout\_regression.py}
+	\item Launch the UI: \texttt{python control\_optimizer\_ui.py}
+	\item Run parallel simulations: \texttt{java run\_concurrently <numRuns> <numThreads> [pythonCmd]}
+\end{itemize}
 
 \section{Reproducibility}
 Typical execution workflow:
@@ -290,6 +325,18 @@ Cornell CS4787.
 \newblock \emph{Lecture 17: Bayesian Optimization II}.
 \newblock Cornell University, 2019.
 \newblock \url{https://www.cs.cornell.edu/courses/cs4787/2019sp/notes/lecture17.pdf}.
+
+\bibitem{penagraf2022desml}
+F. Pe{\~n}a-Graf, J. {\'O}rdenes, R. Wilson, and A. Navarra.
+\newblock Discrete event simulation for machine-learning enabled mine production control with application to gold processing.
+\newblock \emph{Metals}, 12(2):225, 2022.
+\newblock \url{https://doi.org/10.3390/met12020225}.
+
+\bibitem{ordenes2025drs}
+J. {\'O}rdenes, R. Retamal, M. Mroz, A. Quelopana, G. Zbadi, and A. Navarra.
+\newblock Discrete rate simulation for geostatistically informed economical evaluation of narrow vein Au-Ag ore processing.
+\newblock \emph{CIM Journal}, 16(3):179--196, 2025.
+\newblock \url{https://doi.org/10.1080/19236026.2025.2514996}.
 
 \end{thebibliography}
 

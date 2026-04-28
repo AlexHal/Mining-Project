@@ -206,8 +206,8 @@ INPUT ./images/Python_sim_ore_level_plot.png
 INPUT ./images/Python_sim_ore_level_plot.png
 INPUT ./images/Python_sim_ore_level_plot.png
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
-INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT report.aux
 INPUT ./report.out
 INPUT ./report.out
